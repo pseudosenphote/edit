@@ -201,6 +201,10 @@
 }
 
 
+#editingContainer {
+        display: none;
+    }
+
 
 
     </style>
@@ -491,9 +495,22 @@ document.addEventListener("DOMContentLoaded", function() {
 <footer>
     <p>© 2024 Thiméo Nguyen. All rights reserved.</p>
 </footer>
+   <script>
+        // Fonction pour vérifier l'URL et afficher le conteneur si nécessaire
+        function verifierEtAfficherConteneur() {
+            const cheminActuel = window.location.pathname;
+            const conteneur = document.getElementById('monConteneur');
 
+            // Vérifie si le chemin contient "/edit"
+            if(cheminActuel.includes('/edit')) {
+                conteneur.style.display = 'block'; // Affiche le conteneur
+            }
+        }
 
-<script src="delete.js"></script>
-
+        // Exécute la fonction au chargement de la page
+        verifierEtAfficherConteneur();
+    </script>
 </body>
 </html>
+
+					
