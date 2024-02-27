@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thiméo Nguyen</title>
@@ -224,7 +225,7 @@
     <section class="section" id="about">
         <div class="about-me">
             <h2>About Me</h2>
-            <p class="">This is a brief section about you. Include your background, interests, and whatever else you wish to share.</p>
+            <p>This is a brief section about you. Include your background, interests, and whatever else you wish to share.</p>
         </div>
     </section>
 
@@ -232,12 +233,14 @@
         <div class="projects">
             <h2>Projets</h2>
             <!-- Les projets ici -->
-				
+				<p>Je vais effectuer les ajustements nécessaires pour répondre à vos besoins en termes de design et de fonctionnalité. Cela inclut les ajustements de la largeur des sections, la correction de l'affichage du bouton de contact, l'amélioration de l'ombre pour qu'elle ne soit pas trop floue et pour éviter une séparation ombrée visible entre les </p>
 				<img src="https://via.placeholder.com/600x400" alt="Placeholder" class="responsive-image">
-				<h3>
+				<h3>Lucky<h3>
+				<div class="youtube-video-container">
+    <iframe src="https://www.youtube.com/embed/VOTRE_VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 				
-				
-        </h3><div class="project"><h3>Test</h3><p></p></div></div>
+        </div>
     </section>
 
     <!-- Bouton de contact ajusté -->
@@ -247,8 +250,10 @@
     </div>
 </div>
 
-
+<div id="edit">
+</div>
     <!-- Votre contenu HTML ici -->
+
 
 
 <script>
@@ -462,6 +467,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // Ajout du gestionnaire d'événement pour le bouton
     document.getElementById('editTextButton').addEventListener('click', toggleTextEditMode);
 });
+
+fetch('fonctionEdit.html')
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById('edit').innerHTML = html;
+    })
+    .catch(error => console.error('Erreur lors du chargement du fichier:', error));
+
 </script>
 
 
@@ -471,6 +484,5 @@ document.addEventListener("DOMContentLoaded", function() {
 </footer>
 
 
-
-
-</body></html>
+</body>
+</html>
