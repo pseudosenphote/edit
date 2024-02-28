@@ -210,45 +210,43 @@
 <body>
 
 <header>
-    <div class="container" contenteditable="true">
-        <h1 contenteditable="true">Thiméo Nguyen</h1>
+    <div class="container">
+        <h1>Thiméo Nguyen</h1>
     </div>
 </header>
 
 <nav>
   
-        <a href="#about" contenteditable="true">About Me</a>
-        <a href="#projects" contenteditable="true">Projets</a>
+        <a href="#about">About Me</a>
+        <a href="#projects">Projets</a>
 
-     <a href="https://thimeonguyen.com/contact" class="contact-button" contenteditable="true">Contact</a>
+     <a href="https://thimeonguyen.com/contact" class="contact-button">Contact</a>
 </nav>
 
-<div class="container" contenteditable="true">
+<div class="container">
     <section class="section" id="about">
-        <div class="about-me" contenteditable="true">
-            <h2 contenteditable="true">About Me</h2>
-            <p contenteditable="true">This is a brief section about you. Include your background, interests, and whatever else you wish to share.</p>
+        <div class="about-me">
+            <h2>About Me</h2>
+            <p>This is a brief section about you. Include your background, interests, and whatever else you wish to share.</p>
         </div>
     </section>
 
     <section class="section" id="projects">
-        <div class="projects" contenteditable="true">
-            <h2 class="" contenteditable="true">Projets ahahahahah</h2>
+        <div class="projects">
+            <h2 class="">Projets</h2>
             <!-- Les projets ici -->
 				
 				
-				<h3 contenteditable="true">
-				<div class="youtube-video-container" contenteditable="true">
-    
-</div>
+				<h3>
 				
-        </h3></div>
+				
+        </h3><div class="project"><h3>Lucky</h3><p>L’histoire de Mornevil </p></div><div class="project"><h3></h3><p></p><div class="youtube-video-container"><iframe src="https://www.youtube.com/embed/w8V97bpCZ1o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe></div></div></div>
     </section>
 
     <!-- Bouton de contact ajusté -->
 
-    <div style="text-align: center; margin: 20px 0;" contenteditable="true">
-        <a href="https://thimeonguyen.com/contact" class="contact-button" contenteditable="true">Contact</a>
+    <div style="text-align: center; margin: 20px 0;">
+        <a href="https://thimeonguyen.com/contact" class="contact-button">Contact</a>
     </div>
 </div>
 
@@ -449,26 +447,26 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 
 
-<div id="editingContainer" contenteditable="true">
-<div class="container" id="deletefb" contenteditable="true">
-    <div class="formId" contenteditable="true">
+<div id="editingContainer" style="display: block;">
+<div class="container" id="deletefb">
+    <div class="formId">
         <input type="text" id="project-title" placeholder="Titre du projet">
         <textarea id="project-description" placeholder="Description du projet"></textarea>
         <input type="text" id="project-image" placeholder="URL de l'image du projet">
         <input type="text" id="project-video" placeholder="ID de la vidéo YouTube">
-        <button onclick="addProject()">Ajouter le projet</button>
+        <button onclick="addProject()">Ajouté ✅</button>
     </div>
-<div id="fixedControls" contenteditable="true">
+<div id="fixedControls">
   <button id="editModeButton">Activer le Mode Édition</button>
   <button id="deleteSelectedButton">Supprimer les éléments sélectionnés</button>
-  <button id="editTextButton">Édition de texte activée</button>
+  <button id="editTextButton">Activer l'édition de texte</button>
 </div>
 <button id="downloadButtonId" onclick="downloadHTMLWithoutFormAndButton()">Push to Github repo</button>
 </div>
 </div>
 
 <footer>
-    <p contenteditable="true">© 2024 Thiméo Nguyen. All rights reserved.</p>
+    <p>© 2024 Thiméo Nguyen. All rights reserved.</p>
 </footer>
    <script>
         // Fonction pour vérifier l'URL et afficher le conteneur si nécessaire
@@ -560,4 +558,5 @@ function downloadHTMLWithoutFormAndButton() {
     // Exécute la fonction au chargement de la page
     verifierEtAfficherConteneur();
 </script>
+
 </body></html>
