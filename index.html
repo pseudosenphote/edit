@@ -361,24 +361,6 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('deleteSelectedButton').addEventListener('click', deleteSelectedElements);
 });
 
-function downloadHTMLWithoutFormAndButton() {
-    var clone = document.documentElement.cloneNode(true);
-    var formToRemove = clone.querySelector("#deletefb");
-    if (formToRemove) {
-        formToRemove.remove();
-    }
-    var doctype = document.doctype;
-    var doctypeString = new XMLSerializer().serializeToString(doctype);
-    var outerHTML = clone.outerHTML;
-    var fullHTML = doctypeString + '\n' + outerHTML;
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(fullHTML));
-    element.setAttribute('download', "page.html");
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-}
 
 function addProject() {
     var title = document.getElementById('project-title').value;
@@ -485,7 +467,7 @@ document.addEventListener("DOMContentLoaded", function() {
   <button id="deleteSelectedButton">Supprimer les éléments sélectionnés</button>
   <button id="editTextButton">Activer l'édition de texte</button>
 </div>
-<button id="downloadButtonId" onclick="downloadHTMLWithoutFormAndButton()">Télécharger le HTML</button>
+<button id="downloadButtonId" onclick="downloadHTMLWithoutFormAndButton()">Push to Github repo</button>
 </div>
 </div>
 
@@ -506,6 +488,46 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Exécute la fonction au chargement de la page
         verifierEtAfficherConteneur();
+
+function downloadHTMLWithoutFormAndButton() {
+    const githubToken = prompt("Veuillez entrer votre clé API GitHub :", "");
+    const repoUrl = prompt("Veuillez entrer le lien vers votre dépôt GitHub :", "");
+    
+    // Extraire le nom d'utilisateur et le nom du dépôt depuis l'URL
+    const repoMatch = repoUrl.match(/github\.com\/([^\/]+)\/([^\/]+)/);
+    if (!repoMatch) {
+        alert("L'URL du dépôt GitHub semble être invalide. Veuillez vérifier et réessayer.");
+        return;
+    }
+
+    const repoOwner = repoMatch[1];
+    const repoName = repoMatch[2];
+    const filePath = 'index.html'; // Le chemin est maintenant fixé à 'index.html'
+    const commitMessage = 'Upload HTML page as index.html';
+
+    const content = btoa(unescape(encodeURIComponent(document.documentElement.outerHTML)));
+
+    fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
+        method: 'PUT',
+        headers: {
+            'Authorization': `token ${githubToken}`,
+            'Accept': 'application/vnd.github.v3+json',
+        },
+        body: JSON.stringify({
+            message: commitMessage,
+            content: content,
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        alert('Page uploaded successfully as index.html!');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please check the console for more details.');
+    });
+}
     </script>
 </body>
 </html>
