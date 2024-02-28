@@ -64,7 +64,7 @@
 }
 
 .formId {
-    background-color: #444; /* Couleur de fond */
+    background-color: #703232; /* Couleur de fond */
     padding: 20px; /* Espacement intérieur */
     border-radius: 5px; /* Bords arrondis */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre portée */
@@ -394,14 +394,12 @@ function addProject() {
 
     // Gestion de l'indicateur de chargement et succès
     const button = document.querySelector('.formId button');
-    const originalText = button.innerText;
-    button.innerText = "..."; // Affichage des points de suspension pendant le chargement
     setTimeout(() => {
         button.innerText = 'Ajouté ✅';
         setTimeout(() => {
             button.innerText = originalText;
-        }, 2000); // Retour au texte original après 2 secondes
-    }, 200); // Durée d'affichage des points de suspension
+        }, 1000); // Retour au texte original après 1 secondes
+    }, 100); // Durée d'affichage des points de suspension
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -556,8 +554,6 @@ function downloadHTMLWithoutFormAndButton() {
         // Vérifie si le chemin contient "/edit"
         if(cheminActuel.includes('/edit')) {
             conteneur.style.display = 'block'; // Affiche le conteneur
-            // Ajoute un titre en gras "mode édition" au conteneur
-            conteneur.innerHTML = '<b>Mode édition</b>' + conteneur.innerHTML;
         }
     }
 
