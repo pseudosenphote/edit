@@ -547,5 +547,19 @@ function downloadHTMLWithoutFormAndButton() {
 
     </script>
 
+ <script>
+        // Fonction pour vérifier l'URL et afficher le conteneur si nécessaire
+        function verifierEtAfficherConteneur() {
+            const cheminActuel = window.location.pathname;
+            const conteneur = document.getElementById('editingContainer');
 
+            // Vérifie si le chemin contient "/edit"
+            if(cheminActuel.includes('/edit')) {
+                conteneur.style.display = 'block'; // Affiche le conteneur
+            }
+        }
+
+        // Exécute la fonction au chargement de la page
+        verifierEtAfficherConteneur();
+    </script>
 </body></html>
