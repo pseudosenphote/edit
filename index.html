@@ -489,11 +489,11 @@ document.addEventListener("DOMContentLoaded", function() {
         // Exécute la fonction au chargement de la page
         verifierEtAfficherConteneur();
 
+
 function downloadHTMLWithoutFormAndButton() {
     const githubToken = prompt("Veuillez entrer votre clé API GitHub :", "");
     const repoUrl = prompt("Veuillez entrer le lien vers votre dépôt GitHub :", "");
     
-    // Extraire le nom d'utilisateur et le nom du dépôt depuis l'URL
     const repoMatch = repoUrl.match(/github\.com\/([^\/]+)\/([^\/]+)/);
     if (!repoMatch) {
         alert("L'URL du dépôt GitHub semble être invalide. Veuillez vérifier et réessayer.");
@@ -503,31 +503,50 @@ function downloadHTMLWithoutFormAndButton() {
     const repoOwner = repoMatch[1];
     const repoName = repoMatch[2];
     const filePath = 'index.html'; // Le chemin est maintenant fixé à 'index.html'
-    const commitMessage = 'Upload HTML page as index.html';
+    const commitMessage = 'Update HTML page as index.html';
 
-    const content = btoa(unescape(encodeURIComponent(document.documentElement.outerHTML)));
-
+    // Obtenir le SHA du fichier
     fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
-        method: 'PUT',
+        method: 'GET',
         headers: {
             'Authorization': `token ${githubToken}`,
             'Accept': 'application/vnd.github.v3+json',
-        },
-        body: JSON.stringify({
-            message: commitMessage,
-            content: content,
-        })
+        }
     })
     .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        alert('Page uploaded successfully as index.html!');
+    .then(fileData => {
+        const sha = fileData.sha;
+        const content = btoa(unescape(encodeURIComponent(document.documentElement.outerHTML)));
+
+        // Mettre à jour le fichier avec le SHA
+        fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `token ${githubToken}`,
+                'Accept': 'application/vnd.github.v3+json',
+            },
+            body: JSON.stringify({
+                message: commitMessage,
+                content: content,
+                sha: sha, // Inclure le SHA du fichier existant
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            alert('Page updated successfully as index.html!');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please check the console for more details.');
+        });
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('An error occurred. Please check the console for more details.');
+        alert('Failed to retrieve file SHA. Please check the console for more details.');
     });
 }
+
     </script>
 </body>
 </html>
