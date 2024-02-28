@@ -548,18 +548,20 @@ function downloadHTMLWithoutFormAndButton() {
     </script>
 
  <script>
-        // Fonction pour vérifier l'URL et afficher le conteneur si nécessaire
-        function verifierEtAfficherConteneur() {
-            const cheminActuel = window.location.pathname;
-            const conteneur = document.getElementById('editingContainer');
+    // Fonction pour vérifier l'URL, afficher le conteneur et ajouter un titre en gras si nécessaire
+    function verifierEtAfficherConteneur() {
+        const cheminActuel = window.location.pathname;
+        const conteneur = document.getElementById('editingContainer');
 
-            // Vérifie si le chemin contient "/edit"
-            if(cheminActuel.includes('/edit')) {
-                conteneur.style.display = 'block'; // Affiche le conteneur
-            }
+        // Vérifie si le chemin contient "/edit"
+        if(cheminActuel.includes('/edit')) {
+            conteneur.style.display = 'block'; // Affiche le conteneur
+            // Ajoute un titre en gras "mode édition" au conteneur
+            conteneur.innerHTML = '<b>Mode édition</b>' + conteneur.innerHTML;
         }
+    }
 
-        // Exécute la fonction au chargement de la page
-        verifierEtAfficherConteneur();
-    </script>
+    // Exécute la fonction au chargement de la page
+    verifierEtAfficherConteneur();
+</script>
 </body></html>
